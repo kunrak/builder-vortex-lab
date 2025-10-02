@@ -52,13 +52,13 @@ export default function Index() {
               {carouselImages.map((image, index) => (
                 <div
                   key={index}
-                  className="flex-[0_0_100%] sm:flex-[0_0_70%] md:flex-[0_0_45%] lg:flex-[0_0_38%] min-w-0 px-2"
+                  className="shrink-0 grow-0 basis-full sm:basis-3/4 md:basis-1/2 lg:basis-1/3 min-w-0 px-2"
                 >
                   <div
                     onClick={() => scrollTo(index)}
                     className={`relative group rounded-[32px] overflow-hidden shadow-lg transition-all duration-300 cursor-pointer ${
                       index === selectedIndex
-                        ? "scale-100 opacity-100 ring-4 ring-[#FFB200] ring-offset-4 ring-offset-gray-100 shadow-2xl"
+                        ? "scale-100 opacity-100 shadow-2xl"
                         : "scale-95 opacity-60"
                     }`}
                     aria-current={index === selectedIndex}
@@ -104,7 +104,7 @@ export default function Index() {
               onClick={() => scrollTo(index)}
               className={`rounded-full transition-all duration-300 ${
                 index === selectedIndex
-                  ? "w-3 h-3 bg-[#FFB200] ring-2 ring-white ring-offset-2 ring-offset-gray-100"
+                  ? "w-3 h-3 bg-[#FFB200] shadow"
                   : "w-3 h-3 bg-white border border-gray-300 hover:bg-gray-200"
               }`}
               aria-label={`Go to slide ${index + 1}`}
