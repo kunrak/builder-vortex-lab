@@ -12,7 +12,7 @@ export default function Index() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "center",
-    skipSnaps: false,
+    containScroll: "trimSnaps",
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -55,11 +55,14 @@ export default function Index() {
                   className="flex-[0_0_100%] sm:flex-[0_0_70%] md:flex-[0_0_45%] lg:flex-[0_0_38%] min-w-0 px-2"
                 >
                   <div
-                    className={`relative rounded-[32px] overflow-hidden shadow-lg transition-all duration-300 ${
+                    onClick={() => scrollTo(index)}
+                    className={`relative group rounded-[32px] overflow-hidden shadow-lg transition-all duration-300 cursor-pointer ${
                       index === selectedIndex
-                        ? "scale-100 opacity-100"
+                        ? "scale-100 opacity-100 ring-4 ring-[#FFB200] ring-offset-4 ring-offset-gray-100 shadow-2xl"
                         : "scale-95 opacity-60"
                     }`}
+                    aria-current={index === selectedIndex}
+                    aria-label={`Slide ${index + 1}`}
                   >
                     <div className="aspect-[3/4] relative">
                       <img
@@ -67,6 +70,9 @@ export default function Index() {
                         alt={`Slide ${index + 1}`}
                         className="w-full h-full object-cover"
                       />
+                      {index !== selectedIndex && (
+                        <div className="absolute inset-0 bg-white/50 transition-opacity duration-300" />
+                      )}
                     </div>
                   </div>
                 </div>
